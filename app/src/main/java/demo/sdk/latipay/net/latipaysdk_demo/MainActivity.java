@@ -12,7 +12,6 @@ import android.widget.Toast;
 import net.latipay.mobile.AlipayOrderAndPaymentListener;
 import net.latipay.mobile.AlipayRequest;
 import net.latipay.mobile.LatipayAPI;
-import net.latipay.mobile.LatipayMethod;
 import net.latipay.mobile.WechatPayRequest;
 import net.latipay.mobile.WechatpayOrderListener;
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //TODO: setup apiKey, userId, walletId first
-        LatipayAPI.setup("", "", "");
+        LatipayAPI.setup("apiKey", "userId", "walletId");
 
         final MainActivity activity = this;
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         activity.dialog = ProgressDialog.show(activity, null, "Lading", false, true);
 
         AlipayRequest req = new AlipayRequest(activity);
-        req.paymentMethod = LatipayMethod.ALIPAY;
         req.amount = "0.01";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         //send request
         WechatPayRequest req = new WechatPayRequest(activity);
-        req.paymentMethod = LatipayMethod.WECHAT_PAY;
         req.amount = "0.01";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
