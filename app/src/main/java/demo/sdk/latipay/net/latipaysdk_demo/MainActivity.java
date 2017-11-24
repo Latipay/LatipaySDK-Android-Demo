@@ -29,20 +29,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //TODO: setup apiKey, userId, walletId first
         LatipayAPI.setup("", "", "");
 
         final MainActivity activity = this;
-
-        ImageButton wechatPayBtn = findViewById(R.id.wechat_btn);
-        wechatPayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.clickWechat(activity);
-            }
-        });
 
         ImageButton alipayBtn = findViewById(R.id.alipay_btn);
         alipayBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,40 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 activity.clickAlipay(activity);
             }
         });
-    }
 
-    private void clickWechat(final MainActivity activity) {
-
-        activity.dialog = ProgressDialog.show(activity, null, "Lading", false, true);
-
-
-        //send request
-        WechatPayRequest req = new WechatPayRequest(activity);
-        req.paymentMethod = LatipayMethod.WECHAT_PAY;
-        req.amount = "0.01";
-        req.merchantReference = "a reference";
-        req.productName = "Fossil Women's Rose Goldtone Blane Watch";
-
-        req.setListener(new WechatpayOrderListener() {
+        ImageButton wechatPayBtn = findViewById(R.id.wechat_btn);
+        wechatPayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-                Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
-                activity.dialog.dismiss();
-
-                if (latipayOrder != null) {
-                    wechatpayOrderId = latipayOrder.get("order_id");
-                }
-
-                if (error != null) {
-                    Toast.makeText(activity, "Latipay: " + error.getMessage(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                Toast.makeText(activity, "Go to Wechatpay", Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                activity.clickWechat(activity);
             }
         });
-
-        LatipayAPI.sendRequest(req);
     }
 
     private void clickAlipay(final MainActivity activity) {
@@ -116,8 +83,42 @@ public class MainActivity extends AppCompatActivity {
             public void onPaymentCompleted(String result, Error error) {
                 Log.d(TAG, result);
 
-                //refer to https://docs.open.alipay.com/204/105301
+                //read more https://docs.open.alipay.com/204/105301
                 Toast.makeText(activity, "Alipay: " + (error != null ? error.getMessage() : result), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        LatipayAPI.sendRequest(req);
+    }
+
+    private void clickWechat(final MainActivity activity) {
+
+        activity.dialog = ProgressDialog.show(activity, null, "Lading", false, true);
+
+
+        //send request
+        WechatPayRequest req = new WechatPayRequest(activity);
+        req.paymentMethod = LatipayMethod.WECHAT_PAY;
+        req.amount = "0.01";
+        req.merchantReference = "a reference";
+        req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+
+        req.setListener(new WechatpayOrderListener() {
+            @Override
+            public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+                Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
+                activity.dialog.dismiss();
+
+                if (latipayOrder != null) {
+                    wechatpayOrderId = latipayOrder.get("order_id");
+                }
+
+                if (error != null) {
+                    Toast.makeText(activity, "Latipay: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(activity, "Go to Wechatpay", Toast.LENGTH_LONG).show();
             }
         });
 
