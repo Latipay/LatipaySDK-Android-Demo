@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         req.amount = "0.01";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+        req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
         req.setListener(new AlipayOrderAndPaymentListener() {
 
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         req.amount = "0.01";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+        req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
         req.setListener(new WechatpayOrderListener() {
             @Override
