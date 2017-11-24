@@ -12,7 +12,7 @@ import android.widget.Toast;
 import net.latipay.mobile.AlipayOrderAndPaymentListener;
 import net.latipay.mobile.AlipayRequest;
 import net.latipay.mobile.LatipayAPI;
-import net.latipay.mobile.WechatPayRequest;
+import net.latipay.mobile.WechatpayRequest;
 import net.latipay.mobile.WechatpayOrderListener;
 
 import java.util.HashMap;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //send request
-        WechatPayRequest req = new WechatPayRequest(activity);
+        WechatpayRequest req = new WechatpayRequest(activity);
         req.amount = "0.01";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
