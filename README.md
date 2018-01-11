@@ -1,6 +1,6 @@
 # LatipaySDK for Android app
 
-Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solution
+Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solution, Wechat pay coming soon.
 
 ![](screenshot/home.png?a)
 
