@@ -2,34 +2,35 @@
 
 Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechatpay
 
-![](screenshot/home.png)
+![](screenshot/home.png?a)
 
-### 1. Download latipay.aar module and import it into your android studio project.
+### 1. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/blob/master/latipay/latipay.aar) module and import it into your android studio project.
 
 ![](screenshot/framework.png)
 
 
-Add dependencies in your project's build.gradle
+Add latipay dependency into your project's build.gradle
 
 ```
-implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-implementation project(':latipay')
+dependencies {
+	...
+	implementation project(':latipay')``
+}
 ```
 
-### 2. Setup Latipay info, [you can get apiKey here](https://merchant.latipay.co.nz/user/regist.action)
+### 2. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.co.nz/user/regist.action) or [contact us](http://www.latipay.net/contact/)
 
-```swift
-
-LatipayAPI.setup("apiKey", "userId", "walletId");
+```java
+LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 ```
 
-### 3. App user purchases with goods using wechat or alipay app
+### 3. App user purchases with goods using alipay app
 
 ```java
 
 AlipayRequest req = new AlipayRequest(this);
-req.amount = "0.01";
+req.amount = "8.88";
 req.merchantReference = "a reference";
 req.productName = "Fossil Women's Rose Goldtone Blane Watch";
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
@@ -49,56 +50,29 @@ req.setListener(new AlipayOrderAndPaymentListener() {
 LatipayAPI.sendRequest(req);
 ```
 
-### 4. But for Wechatpay, there is one more step. We need to request the result of payment when Wechat app finished the payment.
-
-```java
-private String wechatpayOrderId;
-
-
-WechatPayRequest req = new WechatPayRequest(activity);
-req.amount = "0.01";
-req.merchantReference = "a reference";
-req.productName = "Fossil Women's Rose Goldtone Blane Watch";
-req.callbackUrl = "https://yourwebsite.com/pay_callback";
-
-req.setListener(new WechatpayOrderListener() {
-    @Override
-    public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-        
-        wechatpayOrderId = latipayOrder.get("order_id");
-    }
-});
-
-LatipayAPI.sendRequest(req);
-```
-Load the infomation of latipay order in onResume()
-
-```java
-LatipayAPI.getPaymentStatus(wechatpayOrderId, new LatipayAPI.PaymentStatusListener() {
-    @Override
-    public void onOrderStatusSuccess(String result) {
-    	//unpaid or paid
-    }
-
-    @Override
-    public void onOrderStatusFailed(Error error) {
-
-    }
-});
-```
-### 5. No more steps in App
-
 --
 
-### 6. In your web server, please support the below api for callback when payment successful or failed
-API: https://yourwebsite.com/pay_callback
+### 5. In your web server, please support the below api for notifying when payment finished.
 
-Method: GET
+```
+POST https://yourwebsite.com/pay_callback
+```
 
 Parameters:
 
+```json
+{
+	"transaction_id": "43cb917ff8a6",
+	"merchant_reference": "dsi39ej430sks03",
+	"amount": "120.00",
+	"currency": "NZD",
+	"payment_method": "alipay",
+	"pay_time": "2017-07-07 10:53:50",
+	"status" : "paid",
+	"signature": "14d5b06a2a5a2ec509a148277ed4cbeb3c43301b239f080a3467ff0aba4070e3",
+}
 ```
-order_id=1&...
-```
+
+[More info about this notify api](http://doc.latipay.net/v2/latipay-hosted-online.html#Payment-Result-Asynchronous-Notification)
 
 
