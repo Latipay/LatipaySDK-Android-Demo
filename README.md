@@ -4,7 +4,7 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solutio
 
 ![](screenshot/home.png?a)
 
-### 1. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/blob/master/latipay/latipay.aar) module and import it into your android studio project. 
+### 1. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
 
 Android Studio: New > New Module..
 
