@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //TODO: setup apiKey, userId, walletId first
-        LatipayAPI.setup("apiKey", "userId", "walletId");
+        LatipayAPI.setup("", "", "");
 
         final MainActivity activity = this;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void clickAlipay(final MainActivity activity) {
 
-        activity.dialog = ProgressDialog.show(activity, null, "Lading", false, true);
+        activity.dialog = ProgressDialog.show(activity, null, "Loading", false, true);
 
         AlipayRequest req = new AlipayRequest(activity);
         req.amount = "0.01";
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void clickWechat(final MainActivity activity) {
 
-        activity.dialog = ProgressDialog.show(activity, null, "Lading", false, true);
+        activity.dialog = ProgressDialog.show(activity, null, "Loading", false, true);
 
 
         //send request
