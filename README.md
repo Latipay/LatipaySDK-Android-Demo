@@ -1,4 +1,4 @@
-# LatipaySDK-Android-Demo
+# LatipaySDK for Android app
 
 Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solution
 
@@ -15,8 +15,8 @@ Add latipay dependency into your project's build.gradle
 
 ```
 dependencies {
-	...
-	implementation project(':latipay')``
+  ...
+  implementation project(':latipay')``
 }
 ```
 
@@ -38,15 +38,15 @@ req.productName = "Fossil Women's Rose Goldtone Blane Watch";
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
 req.setListener(new AlipayOrderAndPaymentListener() {
-    @Override
-    public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-        //1. create a latipay order which is unpaid.
-    }
+  @Override
+  public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+    //1. create a latipay order which is unpaid.
+  }
     
-    @Override
-    public void onPaymentCompleted(String result, Error error) {
-        //2. then alipay app will tell you the result of payment
-    }
+  @Override
+  public void onPaymentCompleted(String result, Error error) {
+    //2. then alipay app will tell you the result of payment
+  }
 });
 	
 LatipayAPI.sendRequest(req);
@@ -64,14 +64,14 @@ Parameters:
 
 ```json
 {
-	"transaction_id": "43cb917ff8a6",
-	"merchant_reference": "dsi39ej430sks03",
-	"amount": "120.00",
-	"currency": "NZD",
-	"payment_method": "alipay",
-	"pay_time": "2017-07-07 10:53:50",
-	"status" : "paid",
-	"signature": "14d5b06a2a5a2ec509a148277ed4cbeb3c43301b239f080a3467ff0aba4070e3",
+  "transaction_id": "43cb917ff8a6",
+  "merchant_reference": "dsi39ej430sks03",
+  "amount": "120.00",
+  "currency": "NZD",
+  "payment_method": "alipay",
+  "pay_time": "2017-07-07 10:53:50",
+  "status" : "paid",
+  "signature": "14d5b06a2a5a2ec509a148277ed4cbeb3c43301b239f080a3467ff0aba4070e3",
 }
 ```
 
