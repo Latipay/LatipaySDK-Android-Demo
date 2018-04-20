@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         activity.dialog = ProgressDialog.show(activity, null, "Loading", false, true);
 
         AlipayRequest req = new AlipayRequest(activity);
-        req.amount = "0.01";
+        req.amount = "0.1";
         req.merchantReference = "a reference";
         req.productName = "Fossil Women's Rose Goldtone Blane Watch";
         req.callbackUrl = "https://yourwebsite.com/pay_callback";
