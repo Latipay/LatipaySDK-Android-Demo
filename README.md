@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-### 2. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.co.nz/user/regist.action) or [contact us](http://www.latipay.net/contact/)
+### 2. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
 
 ```java
 LatipayAPI.setup("your apiKey", "your userId", "your walletId");
