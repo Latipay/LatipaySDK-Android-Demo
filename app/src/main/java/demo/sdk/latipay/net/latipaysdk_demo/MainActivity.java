@@ -12,6 +12,7 @@ import android.widget.Toast;
 import net.latipay.mobile.AlipayOrderAndPaymentListener;
 import net.latipay.mobile.AlipayRequest;
 import net.latipay.mobile.LatipayAPI;
+import net.latipay.mobile.PaymentStatus;
 
 import java.util.HashMap;
 
@@ -67,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPaymentCompleted(String result, Error error) {
-                Log.d(TAG, result);
+            public void onPaymentCompleted(int result) {
+                if (result == PaymentStatus.PAID) {
+                    Toast.makeText(activity, "Alipay: paid", Toast.LENGTH_LONG).show();
+                }else if (result == PaymentStatus.UNPAID) {
+                    Toast.makeText(activity, "Alipay: unpaid", Toast.LENGTH_LONG).show();
+                }else { //PaymentStatus.UNKNOWN
 
-                //read more https://docs.open.alipay.com/204/105301
-                Toast.makeText(activity, "Alipay: " + (error != null ? error.getMessage() : result), Toast.LENGTH_LONG).show();
+                    //search payment status from your own server
+                }
             }
         });
 
