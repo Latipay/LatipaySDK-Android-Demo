@@ -4,16 +4,16 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay 
 
 ![](screenshot/home.png?a)
 
-### 1. For security reasons, Wechatpay needs signature for your android app.
+### 1. For security reasons in android apps, Wechat pay needs extra signature of your app.
 
-* Wechatpay Android app signature depends on keystore and bundle id. So please setup your keystore first for your project [Sign Your App](https://developer.android.com/studio/publish/app-signing)
-* Run [this apk](https://open.weixin.qq.com/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android.apk) in your mobile phone
-* Generate your app's signature with bundle id.
+* The signature depends on keystore and app bundle id. So please setup your keystore first for your project [Sign Your App](https://developer.android.com/studio/publish/app-signing).
+* Run [this apk](https://open.weixin.qq.com/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android.apk) in your mobile phone.
+* Generate your the signature with bundle id.
 * All is done. Please tell us your signature.
 
 ![](screenshot/chapter8_5_3.png)
 
-### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
+### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project.
 
 Android Studio: New > New Module..
 
@@ -25,7 +25,7 @@ Add latipay dependency into your project's build.gradle
 ```
 dependencies {
   ...
-  
+
   implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
   implementation project(':latipay')
 }
@@ -53,13 +53,13 @@ req.setListener(new LatipayListener() {
   public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
     //1. create a latipay order which is pending.
   }
-    
+
   @Override
   public void onPaymentCompleted(String result, Error error) {
     //2. then alipay app will tell you the result of payment
   }
 });
-	
+
 LatipayAPI.sendRequest(req);
 ```
 
@@ -78,13 +78,13 @@ req.setListener(new LatipayListener() {
   public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
     //1. create a latipay order which is pending.
   }
-    
+
   @Override
   public void onPaymentCompleted(String result, Error error) {
     //2. then wechat app will tell you the result of payment
   }
 });
-	
+
 LatipayAPI.sendRequest(req);
 ```
 
@@ -112,5 +112,3 @@ Parameters:
 ```
 
 [More info about this notify api](http://doc.latipay.net/v2/latipay-hosted-online.html#Payment-Result-Asynchronous-Notification)
-
-
