@@ -90,7 +90,7 @@ LatipayAPI.sendRequest(req);
 
 --
 
-### 6. In your web server, please support the below api for notifying when payment finished.
+### 6. Please support the `callbackUrl` for notifying the result of payment.
 
 ```
 POST https://yourwebsite.com/pay_callback
