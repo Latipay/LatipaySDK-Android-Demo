@@ -11,7 +11,7 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay 
 * Generate your app's signature with bundle id.
 * All is done. Please tell us your signature.
 
-![](https://pay.weixin.qq.com/wiki/doc/api/img/chapter8_5_3.png)
+![](screenshot/chapter8_5_3.png)
 
 ### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
 
