@@ -88,7 +88,7 @@ req.setListener(new LatipayListener() {
 LatipayAPI.sendRequest(req);
 ```
 
-### 6. Please support the `callbackUrl` in AlipayRequest and WechatpayRequest for receiving the result of payment.
+### 6. Please support the `callbackUrl` in AlipayRequest and WechatpayRequest for receiving the result of payment in your backend server.
 
 ```
 POST https://yourwebsite.com/pay_callback
