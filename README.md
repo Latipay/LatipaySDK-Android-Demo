@@ -1,10 +1,19 @@
 # LatipaySDK for Android app
 
-Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solution, Wechat pay coming soon.
+Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay payment solution.
 
 ![](screenshot/home.png?a)
 
-### 1. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
+### 1. For security reasons, Wechatpay needs signature for your android app.
+
+* Wechatpay Android app signature depends on keystore and bundle id. So please setup your keystore first for your project [Sign Your App](https://developer.android.com/studio/publish/app-signing)
+* Run [this apk](https://open.weixin.qq.com/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android.apk) in your mobile phone
+* Generate your app's signature with bundle id.
+* All is done. Please tell us your signature.
+
+![](screenshot/chapter8_5_3.png)
+
+### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
 
 Android Studio: New > New Module..
 
@@ -16,31 +25,33 @@ Add latipay dependency into your project's build.gradle
 ```
 dependencies {
   ...
-  implementation project(':latipay')``
+  
+  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+  implementation project(':latipay')
 }
 ```
 
-### 2. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
+### 3. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
 
 ```java
 LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 ```
 
-### 3. App user purchases with goods using alipay app
+### 4. App user purchases with goods using alipay app
 
 ```java
 
 AlipayRequest req = new AlipayRequest(this);
 req.amount = "8.88";
-req.merchantReference = "a reference";
-req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+req.merchantReference = "89439798527864287364";
+req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
-req.setListener(new AlipayOrderAndPaymentListener() {
+req.setListener(new LatipayListener() {
   @Override
   public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-    //1. create a latipay order which is unpaid.
+    //1. create a latipay order which is pending.
   }
     
   @Override
@@ -52,9 +63,34 @@ req.setListener(new AlipayOrderAndPaymentListener() {
 LatipayAPI.sendRequest(req);
 ```
 
+### 5. App user purchases with goods using wechat app
+
+```java
+
+WechatpayRequest req = new WechatpayRequest(this);
+req.amount = "8.88";
+req.merchantReference = "1239127391273213132";
+req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
+req.callbackUrl = "https://yourwebsite.com/pay_callback";
+
+req.setListener(new LatipayListener() {
+  @Override
+  public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+    //1. create a latipay order which is pending.
+  }
+    
+  @Override
+  public void onPaymentCompleted(String result, Error error) {
+    //2. then wechat app will tell you the result of payment
+  }
+});
+	
+LatipayAPI.sendRequest(req);
+```
+
 --
 
-### 5. In your web server, please support the below api for notifying when payment finished.
+### 6. In your web server, please support the below api for notifying when payment finished.
 
 ```
 POST https://yourwebsite.com/pay_callback
