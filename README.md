@@ -16,7 +16,9 @@ Add latipay dependency into your project's build.gradle
 ```
 dependencies {
   ...
-  implementation project(':latipay')``
+  
+  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+  implementation project(':latipay')
 }
 ```
 
@@ -33,19 +35,44 @@ LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 AlipayRequest req = new AlipayRequest(this);
 req.amount = "8.88";
-req.merchantReference = "a reference";
-req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+req.merchantReference = "89439798527864287364";
+req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
-req.setListener(new AlipayOrderAndPaymentListener() {
+req.setListener(new LatipayListener() {
   @Override
   public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-    //1. create a latipay order which is unpaid.
+    //1. create a latipay order which is pending.
   }
     
   @Override
   public void onPaymentCompleted(String result, Error error) {
     //2. then alipay app will tell you the result of payment
+  }
+});
+	
+LatipayAPI.sendRequest(req);
+```
+
+### 4. App user purchases with goods using wechat app
+
+```java
+
+WechatpayRequest req = new WechatpayRequest(this);
+req.amount = "8.88";
+req.merchantReference = "1239127391273213132";
+req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
+req.callbackUrl = "https://yourwebsite.com/pay_callback";
+
+req.setListener(new LatipayListener() {
+  @Override
+  public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+    //1. create a latipay order which is pending.
+  }
+    
+  @Override
+  public void onPaymentCompleted(String result, Error error) {
+    //2. then wechat app will tell you the result of payment
   }
 });
 	
