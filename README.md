@@ -1,6 +1,6 @@
 # LatipaySDK for Android app
 
-Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay payment solution.
+Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay mobile app payment solution. Alipay or Wechat app is required.
 
 ![](screenshot/home.png?a)
 
@@ -38,7 +38,7 @@ LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 ```
 
-### 4. App user purchases with goods using alipay app
+### 4. How to use Alipay?
 
 ```java
 
@@ -63,7 +63,7 @@ req.setListener(new LatipayListener() {
 LatipayAPI.sendRequest(req);
 ```
 
-### 5. App user purchases with goods using wechat app
+### 5. How to use wechat pay?
 
 ```java
 
