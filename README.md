@@ -13,7 +13,7 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay 
 
 ![](screenshot/chapter8_5_3.png)
 
-### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project.
+### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar?1525301264551) module and import it into your android studio project.
 
 Android Studio: New > New Module..
 
