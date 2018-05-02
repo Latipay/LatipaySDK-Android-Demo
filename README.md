@@ -1,10 +1,16 @@
 # LatipaySDK for Android app
 
-Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay payment solution, Wechat pay coming soon.
+Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay payment solution.
 
 ![](screenshot/home.png?a)
 
-### 1. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
+### 1. For security reasons, Wechatpay needs signature for your android app.
+
+* Setup keystore for your project [Sign Your App](https://developer.android.com/studio/publish/app-signing)
+* Run [this apk](https://open.weixin.qq.com/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android.apk) in your mobile phone
+* get your app's signature with bundle id.
+
+### 2. Download [latipay.aar](https://github.com/Latipay/LatipaySDK-Android-Demo/raw/master/latipay/latipay.aar) module and import it into your android studio project. 
 
 Android Studio: New > New Module..
 
@@ -22,14 +28,14 @@ dependencies {
 }
 ```
 
-### 2. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
+### 3. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
 
 ```java
 LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 ```
 
-### 3. App user purchases with goods using alipay app
+### 4. App user purchases with goods using alipay app
 
 ```java
 
@@ -54,7 +60,7 @@ req.setListener(new LatipayListener() {
 LatipayAPI.sendRequest(req);
 ```
 
-### 4. App user purchases with goods using wechat app
+### 5. App user purchases with goods using wechat app
 
 ```java
 
@@ -81,7 +87,7 @@ LatipayAPI.sendRequest(req);
 
 --
 
-### 5. In your web server, please support the below api for notifying when payment finished.
+### 6. In your web server, please support the below api for notifying when payment finished.
 
 ```
 POST https://yourwebsite.com/pay_callback
