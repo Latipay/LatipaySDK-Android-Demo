@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //TODO: setup apiKey, userId, walletId first
-        LatipayAPI.setup("3WVB8H18j287P", "U000000266", "W000000902");
+        LatipayAPI.setup("", "", "");
 
         final MainActivity activity = this;
 
