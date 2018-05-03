@@ -58,8 +58,8 @@ req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
 req.setListener(new LatipayListener() {
   @Override
-  public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-    //1. create a latipay order which is pending.
+  public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
+    //1. create a latipay transaction which is pending.
   }
 
   @Override
@@ -83,8 +83,8 @@ req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
 req.setListener(new LatipayListener() {
   @Override
-  public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
-    //1. create a latipay order which is pending.
+  public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
+    //1. create a latipay transaction which is pending.
   }
 
   @Override
@@ -96,7 +96,7 @@ req.setListener(new LatipayListener() {
 LatipayAPI.sendRequest(req);
 ```
 
-### 6. Please support the `callbackUrl` in AlipayRequest and WechatpayRequest for receiving the result of payment in your backend server.
+### 6. Please support the `callbackUrl` in AlipayRequest and WechatpayRequest for receiving the result of payment in your backend server. Latipay server will call this api to notify the result when status updated.
 
 ```
 POST https://yourwebsite.com/pay_callback
