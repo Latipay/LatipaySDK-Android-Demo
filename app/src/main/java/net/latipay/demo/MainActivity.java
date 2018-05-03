@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.alipay.sdk.auth.AlipaySDK;
+
 import net.latipay.mobile.LatipayListener;
 import net.latipay.mobile.AlipayRequest;
 import net.latipay.mobile.LatipayAPI;
 import net.latipay.mobile.PaymentStatus;
 import net.latipay.mobile.WechatpayRequest;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,14 +60,18 @@ public class MainActivity extends AppCompatActivity {
 
         AlipayRequest req = new AlipayRequest(activity);
         req.amount = "0.3";
-        req.merchantReference = "89439798527864287364";
-        req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+
+        //merchantReference is your order id, must be unique in your system
+        //using date here is only for demo.
+        req.merchantReference = new Long(new Date().getTime()).toString();
+
+        req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
         req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
         req.setListener(new LatipayListener() {
 
             @Override
-            public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+            public void onTransactionCompleted(HashMap<String, String> latipayOrder, Error error) {
                 Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
                 activity.dialog.dismiss();
 
@@ -97,14 +104,18 @@ public class MainActivity extends AppCompatActivity {
 
         WechatpayRequest req = new WechatpayRequest(activity);
         req.amount = "0.3";
-        req.merchantReference = "1239127391273213132";
-        req.productName = "Fossil Women's Rose Goldtone Blane Watch";
+
+        //merchantReference is your order id, must be unique in your system
+        //using date here is only for demo.
+        req.merchantReference = new Long(new Date().getTime()).toString();
+
+        req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
         req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
         req.setListener(new LatipayListener() {
 
             @Override
-            public void onOrderCompleted(HashMap<String, String> latipayOrder, Error error) {
+            public void onTransactionCompleted(HashMap<String, String> latipayOrder, Error error) {
                 Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
                 activity.dialog.dismiss();
 

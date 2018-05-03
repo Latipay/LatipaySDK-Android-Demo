@@ -4,6 +4,14 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay 
 
 ![](screenshot/home.png?a)
 
+### What you must have before using this SDK. If you don't know what they are, please contact us.
+
+* user id
+* wallet id
+* api key
+* wechat app id
+* alipay or wechat app installed
+
 ### 1. For security reasons in android apps, Wechat pay needs extra signature of your app.
 
 * The signature depends on keystore and app bundle id. So please setup your keystore first for your project [Sign Your App](https://developer.android.com/studio/publish/app-signing).
@@ -44,7 +52,7 @@ LatipayAPI.setup("your apiKey", "your userId", "your walletId");
 
 AlipayRequest req = new AlipayRequest(this);
 req.amount = "8.88";
-req.merchantReference = "89439798527864287364";
+req.merchantReference = "89439798527864287364"; //must be unique in your system
 req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
@@ -69,7 +77,7 @@ LatipayAPI.sendRequest(req);
 
 WechatpayRequest req = new WechatpayRequest(this);
 req.amount = "8.88";
-req.merchantReference = "1239127391273213132";
+req.merchantReference = "1239127391273213132"; //must be unique in your system
 req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
 req.callbackUrl = "https://yourwebsite.com/pay_callback";
 
