@@ -92,6 +92,7 @@ LatipayAPI.sendRequest(req);
 
 ```
 POST https://yourwebsite.com/pay_callback
+Content-Type: application/x-www-form-urlencoded
 ```
 
 Parameters:
