@@ -59,12 +59,13 @@ req.callbackUrl = "https://yourwebsite.com/pay_callback";
 req.setListener(new LatipayListener() {
   @Override
   public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
-    //1. create a latipay transaction which is pending.
+    //1. create a latipay transaction which is pending, the status is PENDING.
   }
 
   @Override
-  public void onPaymentCompleted(String result, Error error) {
-    //2. then alipay app will tell you the result of payment
+  public void onPaymentCompleted(int result) {
+    //2. then alipay app will tell you the result of payment, the status could be PAID, UNPAID, or NEED_QUERY_SERVER
+    //If it's NEED_QUERY_SERVER, please query from your own server.
   }
 });
 
@@ -84,12 +85,13 @@ req.callbackUrl = "https://yourwebsite.com/pay_callback";
 req.setListener(new LatipayListener() {
   @Override
   public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
-    //1. create a latipay transaction which is pending.
+    //1. create a latipay transaction, the status is PENDING.
   }
 
   @Override
-  public void onPaymentCompleted(String result, Error error) {
-    //2. then wechat app will tell you the result of payment
+  public void onPaymentCompleted(int result) {
+    //2. then wechat app will tell you the result of payment, the status could be PAID, UNPAID, or NEED_QUERY_SERVER
+    //If it's NEED_QUERY_SERVER, please query from your own server.
   }
 });
 
