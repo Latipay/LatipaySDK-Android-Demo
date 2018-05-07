@@ -4,7 +4,7 @@ Using [Latipay](http://www.latipay.net) sdk to intergrate Alipay and Wechat pay 
 
 ![](screenshot/home.png?a)
 
-### What you must have before using this SDK. If you don't know what they are, please contact us.
+### What you must have before using this SDK.(If you don't know what they are, please contact us)
 
 * user id
 * wallet id
