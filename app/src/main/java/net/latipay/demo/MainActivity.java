@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
         req.setListener(new LatipayListener() {
 
             @Override
-            public void onTransactionCompleted(HashMap<String, String> latipayOrder, Error error) {
-                Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
+            public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
+                Log.d(TAG, "onTransactionCompleted " + String.valueOf(transaction) + (error != null ? error.getMessage() : ""));
                 activity.dialog.dismiss();
 
                 if (error != null) {
