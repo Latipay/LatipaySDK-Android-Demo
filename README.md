@@ -39,6 +39,25 @@ dependencies {
 }
 ```
 
+In your AndroidManifest.xml, please add this activity and it's alias for opening Wechat app.
+
+```
+<application ...>
+
+    <activity
+        android:name="net.latipay.mobile.WXPayEntryActivity"
+        android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+        android:launchMode="singleTop"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+    <activity-alias
+        android:name=".wxapi.WXPayEntryActivity"
+        android:exported="true"
+        android:targetActivity="net.latipay.mobile.WXPayEntryActivity" />
+    
+</application>
+```
+
 ### 3. Setup Latipay info in project, [you can get apiKey here](https://merchant.latipay.net) or [contact us](http://www.latipay.net/contact/)
 
 ```java
