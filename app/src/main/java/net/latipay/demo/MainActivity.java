@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         activity.dialog = ProgressDialog.show(activity, null, "Loading", false, true);
 
         AlipayRequest req = new AlipayRequest(activity);
-        req.amount = "0.3";
+        req.amount = "0.1";
 
         //merchantReference is your order id, must be unique in your system
         //using date here is only for demo.
-        req.merchantReference = new Long(new Date().getTime()).toString();
+        req.merchantReference = Long.valueOf(new Date().getTime()).toString();
 
         req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
         req.callbackUrl = "https://yourwebsite.com/pay_callback";
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTransactionCompleted(HashMap<String, String> latipayOrder, Error error) {
-                Log.d(TAG, "onTransactionCompleted " + String.valueOf(latipayOrder) + (error != null ? error.getMessage() : ""));
+                Log.d(TAG, "onTransactionCompleted " + latipayOrder + (error != null ? error.getMessage() : ""));
                 activity.dialog.dismiss();
 
                 if (error != null) {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if (result == PaymentStatus.UNPAID) {
                     Toast.makeText(activity, "Alipay: unpaid", Toast.LENGTH_LONG).show();
                 }else { //PaymentStatus.UNKNOWN
-
+                    Log.d(TAG, "PaymentStatus.UNKNOWN");
                     //search payment status from your own server
                 }
             }
@@ -102,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
         activity.dialog = ProgressDialog.show(activity, null, "Loading", false, true);
 
         WechatpayRequest req = new WechatpayRequest(activity);
-        req.amount = "0.3";
+        req.amount = "0.1";
 
         //merchantReference is your order id, must be unique in your system
         //using date here is only for demo.
-        req.merchantReference = new Long(new Date().getTime()).toString();
+        req.merchantReference = Long.valueOf(new Date().getTime()).toString();
 
         req.productName = "Fossil Women's Rose Goldtone Blane Watch"; //optional
         req.callbackUrl = "https://yourwebsite.com/pay_callback";
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTransactionCompleted(HashMap<String, String> transaction, Error error) {
-                Log.d(TAG, "onTransactionCompleted " + String.valueOf(transaction) + (error != null ? error.getMessage() : ""));
+                Log.d(TAG, "onTransactionCompleted " + transaction + (error != null ? error.getMessage() : ""));
                 activity.dialog.dismiss();
 
                 if (error != null) {
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if (result == PaymentStatus.UNPAID) {
                     Toast.makeText(activity, "WechatPay: unpaid", Toast.LENGTH_LONG).show();
                 }else { //PaymentStatus.UNKNOWN
-
+                    Log.d(TAG, "PaymentStatus.UNKNOWN");
                     //search payment status from your own server
                 }
             }

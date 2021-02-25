@@ -34,7 +34,7 @@ Add these two dependencies in build.gradle
 dependencies {
   ...
 
-  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
   implementation project(':latipay')
 }
 ```

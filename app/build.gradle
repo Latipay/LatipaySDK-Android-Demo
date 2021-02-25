@@ -1,11 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    signingConfigs {
+        config {
+            //setup your own config
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
     defaultConfig {
-        applicationId "net.latipay.demo"
-        minSdkVersion 14
-        targetSdkVersion 29
+        applicationId "net.latipay.android.lingonberry"
+        minSdkVersion 16
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -13,16 +19,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.config
+        }
+        debug {
+//            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.3.0'
 
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation project(':latipay')
 }
