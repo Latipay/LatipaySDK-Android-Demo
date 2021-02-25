@@ -4,6 +4,10 @@ android {
     signingConfigs {
         config {
             //setup your own config
+            keyAlias ''
+            keyPassword ''
+            storeFile file('.jks')
+            storePassword ''
         }
     }
     compileSdkVersion 30
@@ -19,10 +23,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
         }
         debug {
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
         }
     }
 }
