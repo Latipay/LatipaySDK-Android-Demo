@@ -45,6 +45,12 @@ In your AndroidManifest.xml, please add this activity and it's alias for opening
 
 ```
 //AndroidManifest.xml
+
+<queries>
+    <package android:name="com.tencent.mm" />
+    <package android:name="com.eg.android.AlipayGphone" />
+</queries>
+
 <application ...>
 
     <activity
