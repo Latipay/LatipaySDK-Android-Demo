@@ -29,13 +29,13 @@ Android Studio: File > New > New Module
 
 ![](screenshot/framework.png)
 
-Put alipaysdk-15.8.02.210308182128.aar libs folder under your project module (e.g. app).
+Put [alipaysdk-15.8.02.210308182128.aar](https://raw.githubusercontent.com/Latipay/LatipaySDK-Android-Demo/a8151100ac7cbf9c80b425b13fd0840176ae8d52/app/libs/alipaysdk-15.8.02.210308182128.aar) under your project module's libs folder. e.g. if your project module name is `app `:
 
 ```
 /app/libs/alipaysdk-15.8.02.210308182128.aar
 ```
 
-Add these two dependencies in build.gradle
+Add these three dependencies in build.gradle
     
 ```
 repositories {
