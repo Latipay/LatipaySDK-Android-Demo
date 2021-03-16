@@ -29,13 +29,25 @@ Android Studio: File > New > New Module
 
 ![](screenshot/framework.png)
 
-
-Add these two dependencies in build.gradle
+Put alipaysdk-15.8.02.210308182128.aar libs folder under your project module (e.g. app).
 
 ```
+/app/libs/alipaysdk-15.8.02.210308182128.aar
+```
+
+Add these two dependencies in build.gradle
+    
+```
+repositories {
+  flatDir {
+    dirs 'libs'
+  }
+}
+
 dependencies {
   ...
 
+  implementation (name: 'alipaysdk-15.8.02.210308182128', ext: 'aar')
   implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
   implementation project(':latipay')
 }
